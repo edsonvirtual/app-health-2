@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Descanso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="descanso-content">
+
+  <div class="descanso-container">
+
+    <div class="header-section">
+      <h1>Horários de Descanso</h1>
+      <p>Organize pausas durante o dia para cuidar melhor da sua saúde.</p>
+    </div>
+
+    <ion-card class="descanso-card manha">
+      <ion-card-header>
+        <ion-card-title>Descanso da manhã</ion-card-title>
+        <ion-card-subtitle>Escolha um horário para sua pausa matinal</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Horário</ion-label>
+          <input type="time" [(ngModel)]="descansoManha" />
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="descanso-card tarde">
+      <ion-card-header>
+        <ion-card-title>Descanso da tarde</ion-card-title>
+        <ion-card-subtitle>Defina uma pausa para recuperar a energia</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Horário</ion-label>
+          <input type="time" [(ngModel)]="descansoTarde" />
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="descanso-card noite">
+      <ion-card-header>
+        <ion-card-title>Descanso da noite</ion-card-title>
+        <ion-card-subtitle>Planeje um momento para relaxar antes de dormir</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Horário</ion-label>
+          <input type="time" [(ngModel)]="descansoNoite" />
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" class="save-button" (click)="salvarDescanso()">
+      Salvar horários
+    </ion-button>
+    <ion-button
+  expand="block"
+  color="danger"
+  class="save-button"
+  (click)="resetarDescanso()"
+>
+  Resetar horários
+</ion-button>
+
+    <p class="mensagem" *ngIf="mensagem">{{ mensagem }}</p>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Criar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [@pageFade]>
+  <ion-card class="signup-card">
+    <div class="logo-container">
+      <h1>App Health</h1>
+      <p>Crie sua conta agora!</p>
+    </div>
+
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+          
+        ></ion-input>
+      </ion-item>
+      
+
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input
+          type="password"
+          formControlName="password"
+          placeholder="Mínimo 6 caracteres"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Confirme a Senha</ion-label>
+        <ion-input
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirme sua senha"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Foto (opcional)</ion-label>
+        <input type="file" accept="image/*" capture="user" (change)="onFileSelected($event)" />
+      </ion-item>
+
+      <div class="error-message" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+        <ion-text color="danger">
+          <small>Email inválido</small>
+        </ion-text>
+      </div>
+
+      <div class="error-message" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+        <ion-text color="danger">
+          <small>Senha deve ter no mínimo 6 caracteres</small>
+        </ion-text>
+      </div>
+
+      <div class="error-message" *ngIf="signupForm.get('confirmPassword')?.errors?.['required'] && signupForm.get('confirmPassword')?.touched">
+        <ion-text color="danger">
+          <small>Por favor, confirme sua senha</small>
+        </ion-text>
+      </div>
+
+      <div class="error-message" *ngIf="signupForm.errors?.['passwordMismatch']">
+        <ion-text color="danger">
+          <small>As senhas não correspondem</small>
+        </ion-text>
+      </div>
+
+      <ion-button
+        expand="block"
+        type="submit"
+        class="signup-button"
+        [disabled]="signupForm.invalid"
+      >
+        Criar Conta
+      </ion-button>
+    </form>
+
+    <div class="divider">
+      <span>ou</span>
+    </div>
+
+    <ion-button
+      expand="block"
+      color="light"
+      class="google-button"
+      (click)="signupWithGoogle()"
+    >
+      <ion-text>Cadastrar com Google</ion-text>
+    </ion-button>
+
+    <div class="login-link">
+      <p>Já tem uma conta?</p>
+      <a routerLink="/login">Fazer login</a>
+    </div>
+  </ion-card>
+</ion-content>

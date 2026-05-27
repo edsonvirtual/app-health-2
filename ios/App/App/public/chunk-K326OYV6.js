@@ -1,0 +1,5 @@
+<<<<<<<< HEAD:ios/App/App/public/chunk-K326OYV6.js
+import{b as e}from"./chunk-BYMGTA2M.js";import{b as t}from"./chunk-5HONN5UT.js";import{f as r,j as s,k as c}from"./chunk-RR2R67I5.js";import"./chunk-D7YYRZS5.js";var a=()=>":host(.ion-color){color:var(--ion-color-base)}",n=class{constructor(o){r(this,o)}render(){let o=t(this);return s(c,{key:"bfaa49d35f43b8036725ae8a322c716fc6e43bdf",class:e(this.color,{[o]:!0})},s("slot",{key:"c04880cd1935b42cbe60f58fd523b4d8a96072dc"}))}};n.style=a();export{n as ion_text};
+========
+import{b as e}from"./chunk-BYMGTA2M.js";import{b as t}from"./chunk-CP7M3MDF.js";import{f as r,j as s,k as c}from"./chunk-K67HFKFP.js";import"./chunk-D7YYRZS5.js";var a=()=>":host(.ion-color){color:var(--ion-color-base)}",n=class{constructor(o){r(this,o)}render(){let o=t(this);return s(c,{key:"bfaa49d35f43b8036725ae8a322c716fc6e43bdf",class:e(this.color,{[o]:!0})},s("slot",{key:"c04880cd1935b42cbe60f58fd523b4d8a96072dc"}))}};n.style=a();export{n as ion_text};
+>>>>>>>> b19b64538a805011e4c5c27d7eff8a5bbcdc43fd:ios/App/App/public/chunk-44AOL6U3.js

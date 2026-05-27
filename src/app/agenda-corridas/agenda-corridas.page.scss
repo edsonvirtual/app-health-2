@@ -1,0 +1,57 @@
+.agenda-page {
+  padding: 16px;
+  background: var(--ion-color-light);
+}
+
+.agenda-card,
+.next-card {
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.agenda-card:hover,
+.next-card:hover {
+  transform: translateY(-2px);
+}
+
+ion-item {
+  border-radius: 18px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: #fff;
+}
+
+ion-datetime,
+ion-textarea {
+  --border-radius: 16px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+ion-button {
+  --border-radius: 18px;
+  --box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+ion-button:hover,
+ion-button:active {
+  transform: translateY(-1px);
+}
+
+.saved-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  color: var(--ion-color-success-shade);
+  font-weight: 600;
+}
+
+ion-icon[name="calendar"],
+ion-icon[name="checkmark-circle-outline"],
+ion-icon[slot="icon-only"] {
+  font-size: 20px;
+}

@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Agendar Corridas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="agenda-page" [@pageFade]>
+  <ion-card class="agenda-card">
+    <ion-card-header>
+      <ion-card-title>Agendar Corrida</ion-card-title>
+      <ion-card-subtitle>Escolha a data no calendário e salve o seu compromisso.</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="full">
+        <ion-label position="stacked">Data do agendamento</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" placeholder="Selecione a data" [(ngModel)]="selectedDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="stacked">Observação</ion-label>
+        <ion-textarea placeholder="Local, horário ou observação" [(ngModel)]="note"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" [disabled]="!selectedDate" (click)="saveRun()">
+        <ion-icon slot="start" name="calendar"></ion-icon>
+        Salvar agendamento
+      </ion-button>
+
+      <div class="saved-info" *ngIf="savedMessage">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        {{ savedMessage }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="next-card" *ngIf="appointments.length > 0">
+    <ion-card-header>
+      <ion-card-title>Histórico de agendamentos</ion-card-title>
+      <ion-card-subtitle>{{ appointments.length }} compromisso(s) salvo(s)</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content [@listStagger]>
+      <div class="history-item" *ngFor="let appointment of appointments">
+        <p><strong>Data:</strong> {{ appointment.date | date:'fullDate' }}</p>
+        <p><strong>Observação:</strong> {{ appointment.note || 'Sem observação' }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

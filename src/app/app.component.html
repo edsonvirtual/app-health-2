@@ -1,0 +1,49 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    
+    <ion-menu *ngIf="showAppMenu" contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item routerDirection="forward" [routerLink]="[p.url]" lines="none" detail="false">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content" [@routeAnimation]>
+      <ion-router-outlet></ion-router-outlet>
+    </div>
+
+  </ion-split-pane>
+
+  <div class="bottom-nav" *ngIf="showAppMenu">
+    <ion-button fill="clear" class="nav-button" routerLink="/home">
+      <ion-icon name="home" class="nav-icon"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" class="nav-button" routerLink="/heart-rate">
+      <ion-icon name="heart" class="nav-icon"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" class="nav-button" routerLink="/health">
+      <ion-icon name="fitness" class="nav-icon"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" class="nav-button" routerLink="/agenda-corridas">
+      <ion-icon name="calendar" class="nav-icon"></ion-icon>
+    </ion-button>
+     <button type="button" class="nav-button" (click)="navigateTo('/descanso')">
+      <ion-icon name="moon"></ion-icon>
+    </button>
+    <ion-button fill="clear" class="nav-button" routerLink="/friends">
+      <ion-icon name="people" class="nav-icon"></ion-icon>
+    </ion-button>
+  </div>
+</ion-app>

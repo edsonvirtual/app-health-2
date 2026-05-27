@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Feed Social</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [@pageFade]>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Compartilhar desafio</ion-card-title>
+      <ion-card-subtitle>Publique fotos das suas corridas e desafios</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Descrição</ion-label>
+        <ion-textarea rows="4" [(ngModel)]="caption" placeholder="Escreva algo sobre sua corrida ou desafio..."></ion-textarea>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Foto</ion-label>
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      </ion-item>
+
+      <div class="preview" *ngIf="imagePreview">
+        <ion-card>
+          <ion-img [src]="imagePreview"></ion-img>
+        </ion-card>
+      </div>
+
+      <ion-button expand="block" (click)="addPost()" class="publish-button">
+        <ion-icon slot="start" name="share-social"></ion-icon>
+        Publicar
+      </ion-button>
+      <p class="message" *ngIf="message">{{ message }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="(posts$ | async)?.length === 0">
+    <ion-card-header>
+      <ion-card-title>Nenhum post ainda</ion-card-title>
+      <ion-card-subtitle>Quando publicar, seus posts aparecem aqui.</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list [@listStagger]>
+    <ion-card *ngFor="let post of posts$ | async" class="post-card">
+      <ion-card-header>
+        <ion-card-title>Desafio</ion-card-title>
+        <ion-card-subtitle>{{ post.date | date:'short' }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="post-image">
+          <ion-img [src]="post.image"></ion-img>
+        </div>
+        <p>{{ post.caption }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

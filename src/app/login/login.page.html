@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="page-title">Entrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding login-page-content" [@pageFade]>
+  <div class="login-loading-overlay" *ngIf="isLoading">
+    <div class="login-loading-card">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  </div>
+  <ion-card class="login-card">
+    <div class="logo-container">
+      <h1>App Health</h1>
+      <p>Bem-vindo de volta!</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input
+          type="password"
+          formControlName="password"
+          placeholder="Sua senha"
+        ></ion-input>
+      </ion-item>
+
+      <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <ion-text color="danger">
+          <small>Email inválido</small>
+        </ion-text>
+      </div>
+
+      <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <ion-text color="danger">
+          <small>Senha deve ter no mínimo 6 caracteres</small>
+        </ion-text>
+      </div>
+
+      <ion-button
+        expand="block"
+        type="submit"
+        class="login-button"
+        [disabled]="isLoading || loginForm.invalid"
+      >
+        <span *ngIf="!isLoading">Entrar</span>
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+      </ion-button>
+    </form>
+
+    <div class="divider">
+      <span>ou</span>
+    </div>
+
+    <ion-button
+      type="button"
+      expand="block"
+      color="light"
+      class="google-button"
+      (click)="loginWithGoogle()"
+      [disabled]="isLoading"
+    >
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      <ion-text>
+        <span *ngIf="!isLoading">Entrar com Google</span>
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+      </ion-text>
+    </ion-button>
+
+    <div class="signup-link">
+      <p>Não tem uma conta?</p>
+      <a routerLink="/signup">Criar uma agora</a>
+    </div>
+  </ion-card>
+</ion-content>

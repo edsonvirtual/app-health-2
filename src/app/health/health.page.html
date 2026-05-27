@@ -1,0 +1,122 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Minha Saúde</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" [@pageFade]>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="page-title" size="large">Minha Saúde</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="calculator"></ion-icon>
+        Calculadora de IMC
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Peso (kg)</ion-label>
+        <ion-input type="number" [(ngModel)]="peso" placeholder="Ex: 70"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Altura (m)</ion-label>
+        <ion-input type="number" [(ngModel)]="altura" step="0.01" placeholder="Ex: 1.75"></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" (click)="calcularIMC()" color="primary">
+        <ion-icon name="fitness" slot="start"></ion-icon>
+        Calcular IMC
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="imc > 0">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="heart"></ion-icon>
+        Resultado
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>IMC:</strong> {{ imc.toFixed(2) }}</p>
+      <p><strong>Classificação:</strong> {{ classificacao }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="dicas.length > 0">
+    <ion-card-header>
+      <ion-card-title>Dicas de Alimentação</ion-card-title>
+    </ion-card-header>
+    <ion-card-content [@listStagger]>
+      <ul>
+        <li *ngFor="let dica of dicas">{{ dica }}</li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Contato do Médico</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nome do Médico</ion-label>
+        <ion-input [(ngModel)]="doctorName" placeholder="Dr. Fulano"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telefone</ion-label>
+        <ion-input [(ngModel)]="doctorPhone" placeholder="(00) 9 9999-9999"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="saveDoctor()">Salvar Contato</ion-button>
+      <ion-button expand="block" color="danger" fill="clear" (click)="deleteDoctor()">Remover Contato</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registros de Saúde</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="submitRecordForm()">
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input [(ngModel)]="recordFormTitle" name="recordTitle"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Anotações</ion-label>
+          <ion-input [(ngModel)]="recordFormNotes" name="recordNotes"></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit">{{ editingId ? 'Salvar Alteração' : 'Adicionar Registro' }}</ion-button>
+        <ion-button *ngIf="editingId" expand="block" color="medium" fill="clear" (click)="editingId=null; recordFormTitle=''; recordFormNotes=''">Cancelar Edição</ion-button>
+      </form>
+
+      <div *ngIf="healthRecords.length === 0">
+        <p class="hint">Nenhum registro cadastrado.</p>
+      </div>
+      <div *ngIf="healthRecords.length > 0" class="records-cards">
+        <ion-card *ngFor="let r of healthRecords" class="record-card">
+          <ion-card-header>
+            <ion-card-title>{{ r.title }}</ion-card-title>
+            <ion-card-subtitle>{{ r.date | date:'short' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ r.notes }}</p>
+            <div class="record-actions">
+              <ion-button fill="clear" size="small" (click)="startEditRecord(r.id)">Editar</ion-button>
+              <ion-button fill="clear" color="danger" size="small" (click)="deleteRecord(r.id)">Excluir</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

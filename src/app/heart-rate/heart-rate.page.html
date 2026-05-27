@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Meus Batimentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="heart-rate-page" [@pageFade]>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="page-title" size="large">Meus Batimentos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="page-content ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Sincronização com Smartwatch</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Para usar batimentos cardíacos reais no app, é necessário conectar um smartwatch ou dispositivo de saúde compatível.</p>
+        <p><strong>Status:</strong> {{ smartwatchConnected ? 'Smartwatch conectado' : 'Nenhum smartwatch conectado' }}</p>
+        <ion-button expand="block" color="primary" (click)="connectSmartwatch()" [disabled]="smartwatchConnected">
+          {{ smartwatchConnected ? 'Smartwatch Conectado' : 'Conectar Smartwatch' }}
+        </ion-button>
+        <ion-button expand="block" color="success" (click)="syncHeartRate()" [disabled]="!smartwatchConnected || syncing">
+          {{ syncing ? 'Sincronizando...' : 'Sincronizar Batimentos' }}
+        </ion-button>
+        <div class="heart-rate-card" *ngIf="heartRate !== null">
+          <h2>{{ heartRate }} bpm</h2>
+          <p>Última sincronização: {{ lastSync }}</p>
+        </div>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Histórico de Batimentos</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div *ngIf="history.length === 0">
+              <p class="hint">Nenhum registro salvo ainda.</p>
+            </div>
+            <div *ngIf="history.length > 0">
+              <ion-button size="small" color="danger" (click)="clearHistory()">Limpar Histórico</ion-button>
+              <div *ngFor="let group of groupedHistory()" class="history-group">
+                <h4>{{ group.date }}</h4>
+                <div class="history-cards">
+                  <ion-card *ngFor="let e of group.entries" class="history-card">
+                    <ion-card-content>
+                      <div class="history-card-main">
+                        <div>
+                          <strong>{{ e.bpm }} bpm</strong>
+                          <div class="muted">{{ (e.timestamp | date:'shortTime') }}</div>
+                        </div>
+                        <div>
+                          <ion-button fill="clear" color="danger" size="small" (click)="deleteEntry(e.id)">Excluir</ion-button>
+                        </div>
+                      </div>
+                    </ion-card-content>
+                  </ion-card>
+                </div>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        <p class="hint">Dica: para conectar um smartwatch real, adicione um plugin de saúde como Health Connect, Google Fit ou Apple Health no projeto nativo.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

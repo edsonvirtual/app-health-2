@@ -1,0 +1,22 @@
+.callback-page {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+}
+
+.callback-card {
+  width: min(100%, 420px);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.callback-card h2 {
+  margin-bottom: 14px;
+}
+
+.callback-card p {
+  margin-bottom: 20px;
+  color: #444;
+}

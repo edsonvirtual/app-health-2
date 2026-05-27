@@ -1,0 +1,84 @@
+.signup-card {
+  margin-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  text-align: center;
+  padding: 1.5rem 1rem 1rem;
+  
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    color: var(--ion-color-medium);
+  }
+}
+
+form {
+  ion-item {
+    margin-bottom: 1rem;
+  }
+}
+
+.error-message {
+  padding: 0 1rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.signup-button {
+  margin: 1.5rem 1rem 1rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 1rem;
+  color: var(--ion-color-medium);
+  
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-step-200);
+  }
+
+  span {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.google-button {
+  margin: 0 1rem 1rem;
+  border: 1px solid var(--ion-color-step-300);
+}
+
+.login-link {
+  text-align: center;
+  padding: 1rem;
+  
+  p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    color: var(--ion-color-medium);
+  }
+
+  a {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

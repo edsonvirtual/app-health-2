@@ -1,0 +1,94 @@
+.ion-page {
+  padding-bottom: 6.5rem;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.18rem;
+  padding: 0.35rem 0.4rem;
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid rgba(0, 102, 204, 0.12);
+  box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+.nav-button {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: #1f2c45;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.3rem 0.22rem;
+  border-radius: 10px;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.nav-button ion-icon {
+  font-size: 1.25rem;
+  color: #0066cc;
+}
+
+.nav-button span {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mostrar apenas ícones na barra inferior (esconder labels) */
+.bottom-nav .nav-button span {
+  display: none;
+}
+
+.nav-button:hover,
+.nav-button:focus {
+  background: rgba(0, 102, 204, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-button:active {
+  transform: translateY(0);
+}
+
+.nav-button span {
+  color: #1f2c45;
+}
+
+@media (max-width: 560px) {
+  .bottom-nav {
+    gap: 0.12rem;
+    padding: 0.25rem 0.25rem;
+  }
+
+  .nav-button {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.18rem;
+  }
+
+  .nav-button ion-icon {
+    font-size: 1.1rem;
+  }
+}
+
+/* Ajustes quando os labels estão ocultos */
+.bottom-nav .nav-button {
+  padding: 0.45rem 0.25rem;
+}
+
+.bottom-nav .nav-button ion-icon {
+  font-size: 1.35rem;
+}

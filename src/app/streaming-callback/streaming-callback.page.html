@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="page-title">Retornando</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="callback-page">
+  <div class="callback-card ion-padding">
+    <h2>{{ success ? 'Autenticação concluída' : 'Falha na autenticação' }}</h2>
+    <p>{{ message }}</p>
+    <ion-button *ngIf="!success" expand="block" color="primary" (click)="goBack()">
+      Voltar para Músicas Favoritas
+    </ion-button>
+  </div>
+</ion-content>

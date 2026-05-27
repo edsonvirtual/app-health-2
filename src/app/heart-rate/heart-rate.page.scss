@@ -1,0 +1,25 @@
+.heart-rate-page .page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heart-rate-card {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #f8f9fc;
+  text-align: center;
+}
+
+.heart-rate-card h2 {
+  margin: 0;
+  font-size: 3rem;
+  color: #d32f2f;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 0.92rem;
+  color: #666;
+}

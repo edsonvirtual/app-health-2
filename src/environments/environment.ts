@@ -1,0 +1,16 @@
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyCsW6X8k45xPCmER4d1odeHnF2465GMLLo",
+    authDomain: "app-health-bc4f0.firebaseapp.com",
+    projectId: "app-health-bc4f0",
+    storageBucket: "app-health-bc4f0.firebasestorage.app",
+    messagingSenderId: "280874387738",
+    appId: "1:280874387738:web:14911e7421b933813544a3",
+    measurementId: "G-TH3SSLXDTM"
+  },
+  googleClientId: 'YOUR_ANDROID_NATIVE_CLIENT_ID.apps.googleusercontent.com',
+  spotifyClientId: '',
+  deezerAppId: '',
+  youtubeClientId: ''
+};

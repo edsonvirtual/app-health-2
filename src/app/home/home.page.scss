@@ -1,0 +1,873 @@
+// Barra de Perfil (Header Azul)
+ion-header {
+  ion-toolbar {
+    /* Removido degrade para visual mais formal */
+    background: #ffffff;
+    --padding-top: 0.5rem;
+    --padding-bottom: 0.5rem;
+    --padding-start: 0.5rem;
+    --padding-end: 0.5rem;
+    min-height: auto;
+  }
+}
+
+ion-toolbar {
+  --min-height: 80px; /* Altura reduzida */
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+}
+
+.profile-card {
+  display: block;
+  width: 100%;
+  border-radius: 12px; /* Bordas menos arredondadas */
+  overflow: hidden;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.avatar-wrapper {
+  width: 48px; /* Avatar menor */
+  height: 48px; /* Avatar menor */
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.6); /* Borda mais sutil */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-wrapper {
+  width: 48px; /* Avatar menor */
+  height: 48px; /* Avatar menor */
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.6); /* Borda mais sutil */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  ion-icon {
+    font-size: 24px; /* Ícone menor */
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    margin: 0.15rem 0 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.logout-btn {
+  --color: black;
+  --border-radius: 8px;
+  font-size: 10px; /* Fonte menor */
+  padding: 4px 8px; /* Padding menor */
+  min-height: auto;
+  height: 32px; /* Altura menor */
+
+  &::part(native) {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  &:hover::part(native) {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .avatar-placeholder {
+      font-size: 2.2rem;
+      color: white;
+    }
+
+    .profile-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+
+      h2 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        margin: 0.15rem 0 0;
+        font-size: 0.85rem;
+        opacity: 0.9;
+        color: black;
+      }
+
+      ion-card-title,
+      ion-card-subtitle {
+        color: rgb(21, 21, 21);
+      }
+
+      ion-card-title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      ion-card-subtitle {
+        margin-top: 0.225rem;
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+    }
+
+    .logout-btn {
+      color: white;
+      --background: rgba(255, 255, 255, 0.18);
+      --border-radius: 999px;
+      --padding-start: 0.85rem;
+      --padding-end: 0.85rem;
+      --padding-top: 0.45rem;
+      --padding-bottom: 0.45rem;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      transition: background 0.2s ease, transform 0.2s ease;
+      min-width: 88px;
+    }
+
+    .logout-btn:hover {
+      --background: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+  
+    .view-mode-bottom {
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      width: 100%;
+      padding: 0.85rem 0.75rem;
+      display: flex;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      margin-bottom: 1rem;
+    }
+
+    .view-mode-bottom ion-button {
+      width: 100%;
+      max-width: 240px;
+      justify-content: center;
+      border: 1px solid rgba(0, 102, 204, 0.18);
+      --background: rgba(0, 102, 204, 0.05);
+      color: #0052a3;
+    }
+
+    .view-mode-bottom ion-icon {
+      margin-right: 0.5rem;
+    }
+  
+// Grid de Botões
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+
+  .button-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    background: linear-gradient(135deg, #e6f6ff 0%, #cfeeff 45%, #b6e6ff 100%);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 102, 204, 0.08);
+    min-height: 150px;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.06);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    ion-icon {
+      font-size: 2.5rem;
+      color: var(--ion-color-primary, #0066cc);
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 2px 4px rgba(0, 102, 204, 0.2));
+    }
+
+    span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      line-height: 1.3;
+      transition: color 0.3s ease;
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+
+    &:hover {
+    background: linear-gradient(135deg, #d6f0ff 0%, #c0e8ff 50%, #a7e0ff 100%);
+      border-color: rgba(0, 102, 204, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
+      transform: translateY(-2px);
+
+      &::before {
+        opacity: 1;
+      }
+
+      ion-icon {
+        transform: scale(1.1);
+        color: #0099ff;
+      }
+
+      span {
+        color: #0066cc;
+      }
+    }
+
+    // Botão de emergência com estilo diferente
+    &.emergency {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 50%, #dc4545 100%);
+      border-color: rgba(220, 69, 69, 0.3);
+      box-shadow: 0 4px 16px rgba(220, 69, 69, 0.2);
+
+      ion-icon {
+        color: white;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      span {
+        color: white;
+      }
+
+      &::before {
+        background: linear-gradient(90deg, #ff4444 0%, #ff6666 50%, #ff8888 100%);
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, #ff7b7b 0%, #ff6262 50%, #ff4d4d 100%);
+        border-color: rgba(255, 68, 68, 0.4);
+        box-shadow: 0 12px 32px rgba(255, 68, 68, 0.3);
+        transform: translateY(-2px);
+
+        ion-icon {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// Seção de Previsão do Tempo
+.weather-section {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1.25rem;
+    margin-left: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.01em;
+  }
+
+  .weather-card {
+    background: linear-gradient(135deg, #87ceeb 0%, #6bb8e6 30%, #4a90c9 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    color: black;
+    box-shadow:
+      0 8px 32px rgba(0, 102, 204, 0.15),
+      0 2px 8px rgba(0, 102, 204, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .weather-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+
+      .weather-main {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        ion-icon {
+          font-size: 3.5rem;
+          filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .temperature {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+
+          .temp {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.02em;
+          }
+
+          .condition {
+            font-size: 1rem;
+            opacity: 0.95;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+
+      .weather-details {
+        display: flex;
+        gap: 2.5rem;
+        justify-content: flex-start;
+        padding-top: 1rem;
+        border-top: 2px solid rgba(255, 255, 255, 0.2);
+
+        .detail {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.95rem;
+          font-weight: 500;
+
+          ion-icon {
+            font-size: 1.5rem;
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+
+    .weather-loading {
+      text-align: center;
+      margin: 1.5rem 0;
+      font-style: italic;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+// Seletor de Visualização
+.view-selector {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 2.5rem 0;
+
+  ion-segment {
+    --background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 320px;
+    box-shadow: 0 4px 16px rgba(0, 102, 204, 0.08);
+    border: 1px solid rgba(0, 102, 204, 0.1);
+    backdrop-filter: blur(10px);
+
+    ion-segment-button {
+      --color: #666;
+      --color-checked: white;
+      --background: transparent;
+      --background-checked: linear-gradient(135deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+
+      &:hover {
+        --background: rgba(0, 102, 204, 0.1);
+      }
+    }
+  }
+}
+
+// Lista de Menus
+.buttons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.75rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f0f4f8 100%);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 102, 204, 0.08);
+    border-left: 4px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.06);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    ion-icon:first-child {
+      font-size: 1.6rem;
+      color: var(--ion-color-primary, #0066cc);
+      flex-shrink: 0;
+      min-width: 26px;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 1px 2px rgba(0, 102, 204, 0.2));
+    }
+
+    span {
+      flex-grow: 1;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .chevron {
+      font-size: 1.4rem;
+      color: #999;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    &:active {
+      transform: translateX(6px);
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 50%, #dcf0ff 100%);
+      border-color: rgba(0, 102, 204, 0.2);
+      border-left-color: var(--ion-color-primary, #0066cc);
+      box-shadow: 0 6px 20px rgba(0, 102, 204, 0.12);
+      transform: translateY(-1px);
+
+      &::before {
+        opacity: 1;
+      }
+
+      ion-icon:first-child {
+        transform: scale(1.1);
+        color: #0099ff;
+      }
+
+      span {
+        color: #0066cc;
+      }
+
+      .chevron {
+        color: #0066cc;
+        transform: translateX(2px);
+      }
+    }
+
+    // Emergência em lista
+    &.emergency {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 50%, #dc4545 100%);
+      border-color: rgba(220, 69, 69, 0.3);
+      box-shadow: 0 4px 16px rgba(220, 69, 69, 0.2);
+
+      ion-icon:first-child {
+        color: white;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      span {
+        color: white;
+      }
+
+      .chevron {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      &::before {
+        background: linear-gradient(90deg, #ff4444 0%, #ff6666 50%, #ff8888 100%);
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, #ff7b7b 0%, #ff6262 50%, #ff4d4d 100%);
+        border-color: rgba(255, 68, 68, 0.4);
+        box-shadow: 0 8px 24px rgba(255, 68, 68, 0.25);
+        transform: translateY(-1px);
+
+        ion-icon:first-child {
+          transform: scale(1.1);
+        }
+
+        .chevron {
+          color: white;
+          transform: translateX(2px);
+        }
+      }
+    }
+  }
+}
+
+// Card de Perfil do Google
+.profile-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 50%, #f0f7ff 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 1.5rem 0 2.5rem 0;
+  box-shadow:
+    0 8px 32px rgba(0, 102, 204, 0.12),
+    0 2px 8px rgba(0, 102, 204, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 102, 204, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .profile-card-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+
+    .profile-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+
+      .profile-photo {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        border: 5px solid #ffffff;
+        object-fit: cover;
+        box-shadow:
+          0 8px 24px rgba(0, 102, 204, 0.25),
+          0 4px 12px rgba(0, 102, 204, 0.15),
+          0 0 0 1px rgba(0, 102, 204, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow:
+            0 12px 32px rgba(0, 102, 204, 0.3),
+            0 6px 16px rgba(0, 102, 204, 0.2);
+        }
+      }
+
+      .profile-placeholder-large {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        color: white;
+        border: 5px solid #ffffff;
+        box-shadow:
+          0 8px 24px rgba(0, 102, 204, 0.25),
+          0 4px 12px rgba(0, 102, 204, 0.15);
+        position: relative;
+
+        ion-icon {
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+      }
+
+      // Efeito de brilho sutil
+      &::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+
+    .profile-details {
+      flex-grow: 1;
+
+      h3 {
+        margin: 0 0 0.75rem 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        letter-spacing: -0.02em;
+      }
+
+      .profile-email-card {
+        margin: 0 0 1rem 0;
+        font-size: 0.95rem;
+        color: #666;
+        font-weight: 500;
+        word-break: break-all;
+        opacity: 0.9;
+      }
+
+      .profile-provider {
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        color: #0066cc;
+        font-weight: 600;
+        background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 102, 204, 0.2);
+        backdrop-filter: blur(10px);
+
+        ion-icon {
+          font-size: 1.1rem;
+          color: #0066cc;
+          filter: drop-shadow(0 1px 2px rgba(0, 102, 204, 0.3));
+        }
+      }
+    }
+  }
+
+  // Efeito hover no card inteiro
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 40px rgba(0, 102, 204, 0.15),
+      0 4px 12px rgba(0, 102, 204, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 102, 204, 0.2);
+  }
+
+  transition: all 0.3s ease;
+}
+
+// Footer
+.app-footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0, 102, 204, 0.08);
+  background: #ffffff;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+
+      ion-icon {
+        font-size: 1.8rem;
+        color: var(--ion-color-primary, #0066cc);
+        filter: drop-shadow(0 1px 2px rgba(0, 102, 204, 0.2));
+      }
+
+      span {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #333;
+        background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+
+      a {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+
+        &:hover {
+          color: var(--ion-color-primary, #0066cc);
+          background: rgba(0, 102, 204, 0.1);
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      color: #999;
+      border-top: 1px solid rgba(0, 102, 204, 0.05);
+      padding-top: 1rem;
+
+      .copyright {
+        margin-bottom: 0.5rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        span {
+          background: rgba(0, 102, 204, 0.08);
+          padding: 0.25rem 0.75rem;
+          border-radius: 12px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: #0066cc;
+          border: 1px solid rgba(0, 102, 204, 0.1);
+        }
+      }
+    }
+  }
+}

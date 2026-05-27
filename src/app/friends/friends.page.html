@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Meus Amigos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [@pageFade]>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Adicionar amigo</ion-card-title>
+      <ion-card-subtitle>Envie uma solicitação usando o e-mail do seu amigo</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input [(ngModel)]="friendName" placeholder="Digite o nome do amigo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">E-mail</ion-label>
+        <ion-input [(ngModel)]="friendEmail" type="email" placeholder="email@exemplo.com"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="addFriend()" class="action-button">
+        <ion-icon slot="start" name="person-add"></ion-icon>
+        Enviar solicitação
+      </ion-button>
+      <ion-button expand="block" fill="clear" (click)="shareInvite()" class="social-button">
+        <ion-icon slot="start" name="share-social"></ion-icon>
+        Compartilhar convite
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="message" class="message-card" [ngClass]="messageType">
+    <ion-card-content>
+      <ion-text [color]="messageType">
+        <p class="message">{{ message }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pedidos recebidos</ion-card-title>
+      <ion-card-subtitle>Solicitações que aguardam sua resposta</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ng-container *ngIf="receivedRequests$ | async as receivedRequests; else noReceived">
+        <ion-list *ngIf="receivedRequests.length > 0; else noReceived" [@listStagger]>
+          <ion-item *ngFor="let request of receivedRequests">
+            <div class="friend-info">
+              <div class="friend-title-row">
+                <strong>{{ request.senderName }}</strong>
+                <span class="status-badge pending">{{ request.status | titlecase }}</span>
+              </div>
+              <p>{{ request.senderEmail }}</p>
+              <small>Recebido em: {{ request.createdAt | date:'short' }}</small>
+            </div>
+            <div class="request-actions">
+              <ion-button size="small" fill="clear" color="success" (click)="acceptFriendRequest(request)">Aceitar</ion-button>
+              <ion-button size="small" fill="clear" color="danger" (click)="rejectFriendRequest(request)">Recusar</ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+      <ng-template #noReceived>
+        <p class="hint">Nenhuma solicitação recebida no momento.</p>
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pedidos enviados</ion-card-title>
+      <ion-card-subtitle>Solicitações que você enviou</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ng-container *ngIf="sentRequests$ | async as sentRequests; else noSent">
+        <ion-list *ngIf="sentRequests.length > 0; else noSent" [@listStagger]>
+          <ion-item *ngFor="let request of sentRequests">
+            <div class="friend-info">
+              <div class="friend-title-row">
+                <strong>{{ request.receiverEmail }}</strong>
+                <span class="status-badge pending">{{ request.status | titlecase }}</span>
+              </div>
+              <p>Solicitação pendente</p>
+              <small>Enviado em: {{ request.createdAt | date:'short' }}</small>
+            </div>
+            <div class="request-actions">
+              <ion-button size="small" fill="clear" color="danger" (click)="cancelFriendRequest(request)">Cancelar</ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+      <ng-template #noSent>
+        <p class="hint">Nenhuma solicitação enviada no momento.</p>
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lista de amigos</ion-card-title>
+      <ion-card-subtitle>Toque para remover amigos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list [@listStagger]>
+        <ion-item *ngFor="let friend of friends$ | async">
+          <div class="friend-info">
+            <strong>{{ friend.name }}</strong>
+            <p>{{ friend.email }}</p>
+          </div>
+          <ion-button fill="clear" color="danger" slot="end" (click)="removeFriend(friend.id)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+      <p class="hint" *ngIf="(friends$ | async)?.length === 0">Você ainda não adicionou nenhum amigo. Comece adicionando alguém!</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,116 @@
+.login-card {
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(4, 0, 0, 0.788);
+}
+
+.logo-container {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    color: var(--ion-color-medium);
+  }
+}
+
+form {
+  ion-item {
+    margin-bottom: 1rem;
+  }
+}
+
+.error-message {
+  padding: 0 1rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-button {
+  margin: 2rem 1rem 1rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 2rem 1rem;
+  color: var(--ion-color-medium);
+  
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-step-200);
+  }
+
+  span {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.google-button {
+  margin: 0 1rem 1rem;
+  border: 1px solid var(--ion-color-step-300);
+}
+
+.signup-link {
+  text-align: center;
+  padding: 1rem;
+  
+  p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    color: var(--ion-color-medium);
+  }
+
+  a {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.login-page-content {
+  position: relative;
+}
+
+.login-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.login-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.login-loading-card ion-spinner {
+  width: 3rem;
+  height: 3rem;
+}

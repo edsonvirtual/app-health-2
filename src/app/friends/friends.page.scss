@@ -1,0 +1,101 @@
+.action-button {
+  margin-top: 1rem;
+}
+
+.social-button {
+  margin-top: 0.75rem;
+  --color: var(--ion-color-primary);
+}
+
+.message-card {
+  margin-top: 1rem;
+  border: 1px solid var(--ion-color-primary-shade);
+  background: var(--ion-color-light);
+}
+
+.message-card.success {
+  border-color: var(--ion-color-success-shade);
+  background: var(--ion-color-success-tint);
+}
+
+.message-card.error {
+  border-color: var(--ion-color-danger-shade);
+  background: var(--ion-color-danger-tint);
+}
+
+.message {
+  margin: 0;
+  color: var(--ion-color-dark-tint);
+  font-size: 0.98rem;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.friend-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-badge {
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ion-color-dark-tint);
+  background: var(--ion-color-light);
+}
+
+.status-badge.pending {
+  color: var(--ion-color-warning-contrast);
+  background: var(--ion-color-warning-tint);
+}
+
+.status-badge.accepted {
+  color: var(--ion-color-success-contrast);
+  background: var(--ion-color-success-tint);
+}
+
+.status-badge.rejected {
+  color: var(--ion-color-danger-contrast);
+  background: var(--ion-color-danger-tint);
+}
+
+.friend-info small {
+  color: var(--ion-color-medium);
+  font-size: 0.82rem;
+}
+
+ion-card ion-item {
+  --inner-padding-end: 0.5rem;
+  --inner-padding-start: 0.5rem;
+}
+
+ion-card .request-actions ion-button {
+  min-width: 84px;
+}
+
+.request-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+ion-item {
+  --inner-padding-end: 0.5rem;
+  --inner-padding-start: 0.5rem;
+}
+
+ion-card {
+  margin-top: 1rem;
+}
+
+.hint {
+  margin: 0;
+  color: var(--ion-color-medium);
+}
