@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, NavigationEnd, NavigationStart, NavigationCancel, NavigationError } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { UiService } from './services/ui.service';
+import { AuthService } from './services/auth.service';
 import { filter } from 'rxjs/operators';
 import { routeAnimation } from './animations';
 import { IonApp, IonRouterOutlet, IonToolbar, IonSplitPane, IonHeader, IonTitle, IonList, IonContent, IonItem, IonIcon, IonLabel, IonMenuToggle, IonMenu, IonButton } from '@ionic/angular/standalone';
@@ -29,7 +31,7 @@ export class AppComponent {
 
   private loadingEl: HTMLIonLoadingElement | null = null;
 
-  constructor(private router: Router, private loadingCtrl: LoadingController) {
+  constructor(private router: Router, private loadingCtrl: LoadingController, private authService: AuthService, private uiService: UiService) {
     addIcons({ home, people, cart, settings, calendar, heart, fitness, musicalNotes, moon });
 
     this.router.events.subscribe(async (event) => {
@@ -38,12 +40,18 @@ export class AppComponent {
         try {
           const targetUrl = (event.url || '').split('?')[0].split('#')[0];
           if ((targetUrl === '/login' || targetUrl.startsWith('/login')) && !this.loadingEl) {
+            console.debug('[AppComponent] presenting global loader for', targetUrl);
             this.loadingEl = await this.loadingCtrl.create({
               spinner: 'crescent',
               translucent: true,
               cssClass: 'app-global-loader'
             });
-            await this.loadingEl.present();
+            try {
+              await this.loadingEl.present();
+              console.debug('[AppComponent] loader presented');
+            } catch (e) {
+              console.warn('[AppComponent] failed to present loader', e);
+            }
           }
         } catch (e) {
           // ignore
@@ -56,21 +64,56 @@ export class AppComponent {
           if (this.loadingEl) {
             // dismiss safely
             try {
+              console.debug('[AppComponent] dismissing global loader');
               await this.loadingEl.dismiss();
+              console.debug('[AppComponent] loader dismissed');
             } catch (dismissErr) {
-              // ignore dismiss errors
+              console.warn('[AppComponent] error dismissing loader', dismissErr);
             }
             this.loadingEl = null;
           }
         } catch (e) {
+          console.warn('[AppComponent] error while clearing loader', e);
           this.loadingEl = null;
         }
 
         if (event instanceof NavigationEnd) {
           const url = event.urlAfterRedirects.split('?')[0].split('#')[0];
-          this.showAppMenu = !this.hiddenRoutes.includes(url);
+          // Defer change to avoid ExpressionChangedAfterItHasBeenCheckedError
+          setTimeout(() => {
+            this.showAppMenu = !this.hiddenRoutes.includes(url);
+          });
         }
       }
+    });
+  }
+
+  async ngOnInit() {
+    try {
+      await this.authService.handleRedirectResult();
+      // Initialize auth-related subscriptions that must run inside Angular injection context
+      try { this.authService.init(); } catch (e) { console.warn('AuthService.init() failed', e); }
+    } catch (e) {
+      // ignore
+    }
+    // listen for requests to dismiss the global loader (e.g., logout fallback)
+    this.uiService.onDismissLoader().subscribe(() => {
+      (async () => {
+        try {
+          if (this.loadingEl) {
+            try {
+              console.debug('[AppComponent] uiService request - dismissing global loader');
+              await this.loadingEl.dismiss();
+              console.debug('[AppComponent] loader dismissed by uiService');
+            } catch (dismissErr) {
+              console.warn('[AppComponent] uiService error dismissing loader', dismissErr);
+            }
+            this.loadingEl = null;
+          }
+        } catch (e) {
+          // ignore
+        }
+      })();
     });
   }
 

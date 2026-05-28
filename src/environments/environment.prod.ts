@@ -9,7 +9,10 @@ export const environment = {
     appId: "1:280874387738:web:14911e7421e7421b933813544a3",
     measurementId: "G-TH3SSLXDTM"
   },
-  googleClientId: '',
+    googleClientId: '',
+    // IDs para Google Sign-In
+    googleWebClientId: '',
+    googleNativeClientId: '',
   spotifyClientId: '',
   deezerAppId: '',
   youtubeClientId: ''

@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, filter, take, timeout } from 'rxjs';
 import { pageFadeAnimation } from '../animations';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonInput, IonItem, IonLabel, IonCard, IonIcon, IonSpinner, IonText, AlertController } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,7 @@ export class LoginPage implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private alertController: AlertController
+    ,private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -84,12 +86,43 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   async loginWithGoogle() {
+    let toastEl: HTMLIonToastElement | null = null;
     try {
+      toastEl = await this.toastController.create({
+        message: 'Abrindo login do Google... se o popup for bloqueado, será usado redirect.',
+        duration: 10000,
+        position: 'bottom'
+      });
+      await toastEl.present();
+
       const res = await this.authService.signInWithGoogle();
-      if (res?.user) {
+
+      // popup flow returns UserCredential; redirect flow returns void (and navigates on redirect result)
+      if (res && (res as any).user) {
+        console.debug('[LoginPage] loginWithGoogle: popup result user -> navigating');
+        try { await toastEl.dismiss(); } catch(e) {}
         this.router.navigateByUrl('/home');
+        return;
+      }
+
+      // If we get here, the flow likely used redirect and the page will reload.
+      try {
+        await this.authService.getUser()
+          .pipe(
+            filter(u => !!u),
+            take(1),
+            timeout({ first: 10000 })
+          )
+          .toPromise();
+        try { await toastEl.dismiss(); } catch(e) {}
+        this.router.navigateByUrl('/home');
+      } catch (err: any) {
+        console.warn('[LoginPage] loginWithGoogle: no user after redirect timeout', err);
+        try { await toastEl.dismiss(); } catch(e) {}
+        await this.showAlert('Erro de Login', 'Não foi possível finalizar o login via Google. Tente novamente.');
       }
     } catch (error: any) {
+      try { if (toastEl) await toastEl.dismiss(); } catch(e) {}
       await this.showAlert('Erro de Login', error.message || 'Falha ao fazer login com Google.');
     }
   }
